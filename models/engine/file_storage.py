@@ -1,13 +1,6 @@
 #!/usr/bin/python3
 """ importing required models """
 import json
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
 """ Defining File storage class to opertate the saving and retreiveing objects
     by json files
 """
@@ -50,6 +43,13 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 obj_dict = json.load(f)
                 for key, value in obj_dict.items():
+                    from models.base_model import BaseModel
+                    from models.user import User
+                    from models.state import State
+                    from models.city import City
+                    from models.amenity import Amenity
+                    from models.place import Place
+                    from models.review import Review
                     cls = value['__class__']
                     self.new(eval(cls)(**value))
         except Exception:
